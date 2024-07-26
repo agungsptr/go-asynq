@@ -3,6 +3,7 @@ IMAGE := agungsptr/go-asynq
 CONTAINER := go-asynq
 COMPOSE := docker compose -f docker-compose.yml
 
+# Infra
 build:
 	docker build -t $(IMAGE):$(TAG) .
 
@@ -23,3 +24,10 @@ compose-down:
 purge:
 	@make -s compose-down
 	@docker image rm $(IMAGE):$(TAG) || true
+
+# App
+run:
+	@go run main.go
+
+redis-cli:
+	@docker exec -it go-asynq_redis redis-cli
