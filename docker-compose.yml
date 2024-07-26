@@ -1,0 +1,15 @@
+networks:
+  go-asynq:
+    driver: bridge
+
+services:
+  redis:
+    container_name: go-asynq_redis
+    image: redis:7.2.3
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - go-asynq
+    ports:
+      - ${REDIS_PORT}:6379
