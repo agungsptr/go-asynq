@@ -43,7 +43,8 @@ This folder contains how to create or add tasks to the queue system. There are 2
 
 This folder contains monitoring service from [asynqmon](https://github.com/hibiken/asynqmon).
 
-### Make Command Available
+## Make Command Available
+
 ```sh
 build-queue             # Build queue
 run-queue               # Run queue only
