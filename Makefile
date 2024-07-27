@@ -38,6 +38,13 @@ stop-services:
 purge-services:
 	@make -s stop-services
 	@docker image rm $(IMAGE)_queue:$(TAG) || true
+	@docker image rm $(IMAGE)_monitor:$(TAG) || true
+
+
+# Client, simulate to create queue task
+run-client:
+	@cd queclient && go run main.go
+
 
 # Others
 redis-cli:
