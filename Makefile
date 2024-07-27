@@ -3,31 +3,30 @@ IMAGE := agungsptr/go-asynq
 CONTAINER := go-asynq
 COMPOSE := docker compose -f docker-compose.yml
 
-# Infra
-build:
-	docker build -t $(IMAGE):$(TAG) .
+# Queue
+build-queue:
+	docker build -t $(IMAGE)_queue:$(TAG) queue
 
-infra:
-	@echo "Starting redis..."
-	@docker compose down -v  || true
-	@docker compose up -d --force-recreate redis
-	@echo "Redis is up ✅"
+run-queue:
+	@$(COMPOSE) down -v || true
+	@$(COMPOSE) up -d --force-recreate queue
 
-compose-up:
-	@echo "Starting services..."
-	@TAG=$(TAG) $(COMPOSE) down -v || true
-	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate
+stop-queue:
+	@docker container stop $(CONTAINER)_queue || true
+	@docker container rm $(CONTAINER)_queue || true
 
-compose-down:
-	@TAG=$(TAG) $(COMPOSE) down -v || true
+# Services
+run-services:
+	@$(COMPOSE) down -v || true
+	@$(COMPOSE) up -d --force-recreate
 
-purge:
-	@make -s compose-down
-	@docker image rm $(IMAGE):$(TAG) || true
+stop-services:
+	@$(COMPOSE) down -v || true
 
-# App
-run:
-	@go run main.go
+purge-services:
+	@make -s stop-services
+	@docker image rm $(IMAGE)_queue:$(TAG) || true
 
+# Others
 redis-cli:
 	@docker exec -it go-asynq_redis redis-cli
