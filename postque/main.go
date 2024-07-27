@@ -31,7 +31,7 @@ func NewEmailDeliveryTask(userID int, templateID string) (*asynq.Task, error) {
 }
 
 func main() {
-	// Load .env file
+	// Load Config
 	config.Load()
 
 	redisAddr := fmt.Sprintf("%s:%s", config.RedisHost, config.RedisPort)

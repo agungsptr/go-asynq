@@ -24,4 +24,15 @@ services:
       - REDIS_HOST=redis
     networks:
       - go-asynq
-    
+
+  monitor:
+    container_name: go-asynq_monitor
+    image: agungsptr/go-asynq_monitor:1.0
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - go-asynq
+    ports:
+      - ${MONITOR_PORT}:8080
+    command: --redis-addr=redis:6379
