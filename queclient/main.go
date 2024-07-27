@@ -1,7 +1,7 @@
 package main
 
 import (
-	"asynq-postque/config"
+	"asynq-queclient/config"
 	"encoding/json"
 	"fmt"
 	"log"

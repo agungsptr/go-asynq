@@ -1,4 +1,4 @@
-module asynq-postque
+module asynq-queclient
 
 go 1.22.2
 
