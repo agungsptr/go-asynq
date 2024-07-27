@@ -26,7 +26,7 @@ make run-services
 5. To send queue task to system you can run this command
 
 ```sh
-make run run-client
+make run-client
 ```
 
 ## Explanation
@@ -42,3 +42,18 @@ This folder contains how to create or add tasks to the queue system. There are 2
 ### Monitor Folder
 
 This folder contains monitoring service from [asynqmon](https://github.com/hibiken/asynqmon).
+
+### Make Command Available
+```sh
+build-queue             # Build queue
+run-queue               # Run queue only
+stop-queue              # Stop queue only
+build-monitor           # Build monitor
+run-monitor             # Run monitor only
+stop-monitor            # Stop monitor only
+run-services            # Run all service (Redis, Queue, Monitor)
+stop-services           # Stop all services
+purge-services          # Purge all services
+run-client              # Run client to create queue task
+redis-cli               # Open redis cli
+```
