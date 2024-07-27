@@ -48,4 +48,4 @@ run-client:
 
 # Others
 redis-cli:
-	@docker exec -it go-asynq_redis redis-cli
+	@docker exec -it $(CONTAINER)_redis redis-cli
