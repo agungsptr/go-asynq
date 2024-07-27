@@ -1,8 +1,6 @@
 package config
 
-import "os"
-
 var (
-	RedisHost = os.Getenv("REDIS_HOST")
-	RedisPort = os.Getenv("REDIS_PORT")
+	RedisHost string
+	RedisPort string
 )

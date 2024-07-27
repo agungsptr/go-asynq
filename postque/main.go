@@ -32,10 +32,7 @@ func NewEmailDeliveryTask(userID int, templateID string) (*asynq.Task, error) {
 
 func main() {
 	// Load .env file
-	err := config.LoadEnv(".env")
-	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
-	}
+	config.Load()
 
 	redisAddr := fmt.Sprintf("%s:%s", config.RedisHost, config.RedisPort)
 

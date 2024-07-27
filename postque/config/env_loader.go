@@ -2,11 +2,12 @@ package config
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
 
-func LoadEnv(filename string) error {
+func loadEnvFile(filename string) error {
 	file, err := os.Open(filename)
 	if err != nil {
 		return err
@@ -30,4 +31,14 @@ func LoadEnv(filename string) error {
 		os.Setenv(key, value)
 	}
 	return scanner.Err()
+}
+
+func Load() {
+	err := loadEnvFile("../.env")
+	if err != nil {
+		fmt.Print("Error: can't load .env file. Environment loaded from os instead")
+	}
+
+	RedisHost = os.Getenv("REDIS_HOST")
+	RedisPort = os.Getenv("REDIS_PORT")
 }
