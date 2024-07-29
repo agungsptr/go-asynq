@@ -28,6 +28,10 @@ stop-monitor:
 
 
 # All services (Redis, Queue, Monitor)
+build:
+	@make -s build-queue
+	@make -s build-monitor
+
 run-services:
 	@$(COMPOSE) down -v || true
 	@$(COMPOSE) up -d --force-recreate
